@@ -1,0 +1,10 @@
+<odoo>
+    <record id= "report_xlsx_azure_devops" model="ir.actions.report">
+        <field name="name">XLSX</field>
+        <field name="model">azure.devops</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">itq_azure_devops.report_xlsx_azure_devops</field>
+        <field name="binding_model_id" ref = "model_azure_devops"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+azure_devops_id,azure_devops_name,model_azure_devops,,1,1,1,1
+config_devops_id,config_devops_name,model_config_devops,,1,1,1,1
+repository_project_id,repository_project_name,model_repository_project,,1,1,1,1
+pull_request_id,pull_request_id,model_pull_request_url,,1,1,1,1

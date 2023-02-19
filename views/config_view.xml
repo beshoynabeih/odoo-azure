@@ -1,0 +1,42 @@
+<odoo>
+    <record model="ir.ui.view" id="view_config_devops_form">
+        <field name="name">Config Devops</field>
+        <field name="model">config.devops</field>
+        <field name="arch" type="xml">
+            <form string="Config Devops">
+                <sheet>
+                    <group>
+                        <field name="organization" required="True"/>
+                        <field name="token" required="True"/>
+                        <field name="project_ids" string="Projects" widget="many2many_tags" readonly="True"/>
+                        <field name="api_version"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_config_devops_tree">
+        <field name="name">Config Devops</field>
+        <field name="model">config.devops</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="organization"/>
+                <field name="token"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="config_devops_action" model="ir.actions.act_window">
+        <field name="name">Config</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">config.devops</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="config_devops_menu"
+              name="Configuration"
+              parent="azure_devops_menu_root"
+              action="config_devops_action"/>
+
+</odoo>

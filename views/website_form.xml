@@ -1,0 +1,89 @@
+<odoo>
+    <record id="menu_azure_devops" model="website.menu">
+        <field name="name">Create Request</field>
+        <field name="url">/Create/Request/</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">10</field>
+    </record>
+
+    <template id="create_azure_devops">
+        <t t-call="website.layout">
+<!--            <script>-->
+<!--                $(document).ready(function(){-->
+<!--                    var org = $("#organization").val();-->
+<!--                    var tok = $("#token").val();-->
+<!--                    if(!org || !tok)-->
+<!--                    {-->
+<!--                        $("#organization").change(function(){-->
+<!--                           $("#organization").css('border-color', 'red');-->
+<!--                         });-->
+<!--                       $("#token").change(function(){-->
+<!--                          $("#token").css('border-color', 'red');-->
+<!--                         });-->
+<!--                        $("#btnSave").prop(function(){-->
+<!--                           $("#btnSave").attr("disabled", true);-->
+<!--                         });-->
+<!--                    }-->
+<!--                });-->
+<!--            </script>-->
+            <div class="container">
+                <form id="form_config" name="form_config" action="/Create/Azure/" method="POST">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"></input>
+                    <div class="form-group">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">organization</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" id="organization"
+                                   name="organization"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Token</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="token" name="token" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" id="btnSave">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="thanks_message_id">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="container">
+                    <h1>Thank you</h1>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="alert alert-success" role="status">
+                                Created Successfully !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="fail_message_id">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="container">
+                    <h1>Try again</h1>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="alert alert-danger" role="status">
+                                Created Failed !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

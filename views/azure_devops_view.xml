@@ -1,0 +1,59 @@
+<odoo>
+    <record model="ir.ui.view" id="view_azure_devops_form">
+        <field name="name">Azure Devops</field>
+        <field name="model">azure.devops</field>
+        <field name="arch" type="xml">
+            <form string="Azure Devops">
+                <header>
+                    <button name="ButtonListPullrequests" string="Get Pull" type="object" class="oe_highlight"/>
+                    <button name="PrintReport" string="Print Report" type="object" class="oe_highlight"/>
+<!--                    <button name="get_pull_requests" string="Get Today Pull Requests" type="object"/>-->
+                </header>
+                <sheet>
+                    <group>
+                        <field name="config_id"/>
+                        <field name="project_id"/>
+                        <field name="repository_id"/>
+                    </group>
+                    <notebook>
+                        <page name="urls" string="URLs">
+                            <button string="Open Work Items" name="open_work_items" type="object" class="oe_highlight"/>
+                            <separator/>
+                            <field name="url_ids" readonly="True">
+                                <tree>
+                                    <field name="pull_request"/>
+                                    <field name="url" widget="url"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="azure_devops_tree_view" model="ir.ui.view">
+        <field name="name">azure.devops.tree</field>
+        <field name="model">azure.devops</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="config_id"/>
+                <field name="project_id"/>
+                <field name="repository_id"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="azure_devops_action" model="ir.actions.act_window">
+        <field name="name">Azure Devops</field>
+        <field name="res_model">azure.devops</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="azure_devops_menu_root" name="Azure Devops"/>
+    <menuitem id="azure_devops_menu"
+              parent="azure_devops_menu_root"
+              action="azure_devops_action"/>
+
+</odoo>

@@ -1,0 +1,40 @@
+<odoo>
+    <record model="ir.ui.view" id="view_project_azure_form">
+        <field name="name">Project Azure</field>
+        <field name="model">project.azure</field>
+        <field name="arch" type="xml">
+            <form string="Project Azure">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="url"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="view_project_azure_tree">
+        <field name="name">project.azure</field>
+        <field name="model">project.azure</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="url"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="project_azure_action" model="ir.actions.act_window">
+        <field name="name">Config</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.azure</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="project_azure_menu"
+              name="Project"
+              parent="azure_devops_menu_root"
+              action="project_azure_action"/>
+
+</odoo>

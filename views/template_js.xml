@@ -1,0 +1,8 @@
+<odoo>
+<!--    <template id="test_js_assets_tests" name="temp_of_config_info" inherit_id="web.assets_frontend">-->
+<!--        <xpath expr="." position="inside">-->
+<!--            <script type="text/javascript" src="/itq_azure_devops/static/src/js/test.js"></script>-->
+
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>

@@ -1,0 +1,32 @@
+<odoo>
+    <template id="azure_devops_page">
+        <t t-call="website.layout">
+            <div class="container">
+                <table class="table table-bordered mb64">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span>Repository</span>
+                            </th>
+                            <th class="text-center">
+                                <span>Project</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="repos" t-as="repo">
+                            <tr>
+                                <td>
+                                    <t t-esc="repo.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="repo.project_id.name"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

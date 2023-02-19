@@ -1,0 +1,42 @@
+<odoo>
+    <record model="ir.ui.view" id="view_repository_project_form">
+        <field name="name">repository.project</field>
+        <field name="model">repository.project</field>
+        <field name="arch" type="xml">
+            <form string="Repository Project">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="url"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_repository_project_tree">
+        <field name="name">repository.project</field>
+        <field name="model">repository.project</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="url"/>
+                <field name="project_id"/>
+                <field name="repo_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="repository_project_action" model="ir.actions.act_window">
+        <field name="name">repository.project</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">repository.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="repository_project_menu"
+              name="Repository"
+              parent="azure_devops_menu_root"
+              action="repository_project_action"/>
+
+</odoo>

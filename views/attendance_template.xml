@@ -1,0 +1,74 @@
+<odoo>
+
+    <template id="portal_my_home_attendance" name="Show Attendance" inherit_id="portal.portal_my_home"
+              customize_show="True" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Attendance</t>
+                <t t-set="url" t-value="'/my/attendance'"/>
+                <t t-set="placeholder_count" t-value="'attendance_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_attendance" name="Portal layout : attendance menu"
+              inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'attendance'" t-attf-class="breadcrumb-item #{'active ' if not attendance else ''}">
+                <a t-if="attendance" t-attf-href="/my/attendance?{{ keep_query() }}">Attendance</a>
+                <t t-else="">Attendance</t>
+            </li>
+        </xpath>
+    </template>
+
+
+    <template id="portal_my_attendance" name="My Attendance">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Attendance</t>
+            </t>
+            <t t-if="not all_attendance">
+                <p>There are currently no Attendance for your account.</p>
+            </t>
+            <div t-if="all_attendance" class="panel panel-default">
+                <div class="table-responsive">
+                    <table class="table table-hover o_portal_my_doc_table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>department</th>
+                                <th class='d-none d-md-table-cell'>check in</th>
+                                <th class='d-none d-md-table-cell'>check out</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="all_attendance" t-as="a">
+                                <tr>
+                                    <td>
+                                        <t t-esc="a.employee_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="a.department_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="a.check_in"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="a.check_out"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+</odoo>
+
+
+

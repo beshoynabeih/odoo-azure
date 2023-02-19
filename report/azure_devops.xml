@@ -1,0 +1,119 @@
+<odoo>
+    <template id="report_azure_devops_info">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-set="lst" t-value="doc.get10InfoAboutWorkItems()"/>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4">
+                                    <strong>Organization :</strong>
+                                    <t t-esc="doc.config_id.organization"/>
+                                </div>
+                                <div class="col-8">
+                                    <strong>Token :</strong>
+                                    <t t-esc="doc.config_id.token"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Project :</strong>
+                                    <t t-esc="doc.project_id.name"/>
+                                </div>
+                            </div>
+                            <t t-set="PullRequests" t-value="doc.getLast10Pullrequest()"/>
+                            <t t-foreach="PullRequests" t-as="pull">
+                                <br/>
+                                <br/>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>pullRequestId :</strong>
+                                            <t t-esc="pull.get('pullRequestId')"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <strong>codeReviewId :</strong>
+                                            <t t-esc="pull.get('codeReviewId')"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>createdBy :</strong>
+                                            <t t-esc="pull.get('createdBy')"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <strong>status :</strong>
+                                            <t t-esc="pull.get('status')"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered mb64">
+                                    <thead>
+                                        <tr>
+
+                                            <th>WorkItemID :</th>
+                                            <th>Type :</th>
+                                            <th>AssignedTo :</th>
+                                            <th>CreatedBy :</th>
+                                            <th>Reason :</th>
+                                            <th>ChangedBy :</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <t t-foreach="lst" t-as="pull">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="pull.get('id')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="pull.get('type')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="pull.get('assignedTo')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="pull.get('CreatedBy')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="pull.get('Reason')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="pull.get('ChangedBy')"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </div>
+                        <br/>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Printed By:</strong>
+                                    <t t-esc="user.name"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Printed at:</strong>
+                                    <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_azure_devops" model="ir.actions.report">
+        <field name="name">Report</field>
+        <field name="model">azure.devops</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">itq_azure_devops.report_azure_devops_info</field>
+        <field name="report_file">itq_azure_devops.report_azure_devops_info</field>
+        <field name="binding_model_id" ref="model_azure_devops"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
